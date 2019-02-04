@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "BookingSuccessful";
+
+    //Info messages
+    var successMessage = TempData["successMessage"] ?? string.Empty;
+    var infoMessage = TempData["infoMessage"] ?? string.Empty;
+    var errorMessage = TempData["errorMessage"] ?? string.Empty;
+}
+
+<div style="background-color:rgba(0, 0, 0, 0.8);color:white;margin-top:100px;display:inline-block;">
+    <div style="margin:10px;" >
+        <p>Plese contact the owner to finish your booking!</p>
+    </div>
+    <div style="margin:20px;border: white solid 1px;padding:5px;">
+        <b>Owner's cell phone(Rosen):</b> +1 808 454 7119<br />
+        <b>Owner's e-mail:</b> <a href="mailto:lv3741@hotmail.com">lv3741@hotmail.com</a><br />
+    </div>
+</div>
+
+<script type="text/javascript">
+            var successMessage = "@successMessage";
+            var infoMessage = "@infoMessage";
+            var errorMessage = "@errorMessage";
+
+            if (successMessage != "") {
+                $("#successBox").text(successMessage);
+                $("#successBox").show();
+                setTimeout(function () {
+                    $("#successBox").fadeOut();
+                }, 5000);
+            }
+            if (infoMessage != "") {
+                $("#infoBox").text(infoMessage);
+                $("#infoBox").show();
+                setTimeout(function () {
+                    $("#infoBox").fadeOut();
+                }, 5000);
+            }
+            if (errorMessage != "") {
+                $("#errorBox").text(errorMessage);
+                $("#errorBox").show();
+                setTimeout(function () {
+                    $("#errorBox").fadeOut();
+                }, 5000);
+            }
+</script>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>RichTextEditor Installation</title>
+    <link type="text/css" rel="stylesheet" href="rte-demo.css" />
+    <style type="text/css">
+        .code { font: 9pt courier new; margin-left: 10px; background: #F7F7F7; padding: 0 30px; border-top: #666 1px solid; border-bottom: #666 1px solid; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1><a href="default.htm">RTE Examples(VB)</a></h1>
+            <ul>
+                <li><a href="installation.htm">Installation</a></li>
+                <li><a href="http://cutesoft.net/forums">Forums</a></li>
+                <li><a href="http://richtexteditor.com/pricing.aspx" class="button">Pricing</a></li>
+            </ul>
+        </nav>
+    </header>
+    <article id="content">
+        <h2>Installation Guide</h2>
+        <p>
+            The following guide shows the steps to implement a RichTextEditor Control into ASP.NET
+            applications. If you haven't downloaded the software, please download it from <a
+                href="http://richtexteditor.com/download/richtexteditor.rar">here</a>.
+        </p>
+        <h3>1. Install the assembly
+        </h3>
+        <p>
+            Copy the following files to your application bin folder.
+        </p>
+        <ul>
+            <li>richtexteditor.dll</li>
+            <li>NetSpell.SpellChecker.dll</li>
+            <li>richtexteditor.lic</li>
+        </ul>
+        <p>
+            The "richtexteditor" folder and all files it contains should be deployed to the
+            application directory of your website.
+        </p>
+        <h3>2. Add Uploader httpModule to web.config's httpModules list</h3>
+        <p>
+            To allow RichTextEditor to upload big files, you need to add Uploader HttpModule
+            to your application.
+        </p>
+        <p>
+            IIS 5, 6 and IIS 7, IIS 8 Classic mode</p>
+        <div class="code">
+                &lt;configuration&gt;<br />
+                &nbsp; &lt;system.web&gt;<br />
+                &nbsp;&nbsp;&nbsp; &lt;httpModules&gt;<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;add name="UploadModule" type="RTE.UploadModule,RichTextEditor"/&gt;<br />
+                &nbsp;&nbsp;&nbsp;&nbsp; &lt;/httpModules&gt;<br />
+                &nbsp; &lt;/system.web&gt;<br />
+                &lt;/configuration&gt;
+        </div>
+        <br />
+        <p>
+            IIS 7, IIS 8 Integrated mode</p>
+        <div class="code">
+                &lt;configuration&gt;<br />
+                &nbsp; &lt;system.webServer&gt;<br />
+                &nbsp;&nbsp;&nbsp; &lt;modules&gt;<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;add name="UploadModule" type="RTE.UploadModule,RichTextEditor"/&gt;<br />
+                &nbsp;&nbsp;&nbsp; &lt;/modules&gt;<br />
+                &nbsp; &lt;/system.webServer&gt;<br />
+                &lt;/configuration&gt;
+        </div>
+        <h3>3. Using the Editor in a Web Form</h3>
+        <p>
+            a. Register RichTextEditor control in your page
+        </p>
+        <div class="code">
+            &lt;%@ Register TagPrefix="RTE" Namespace="RTE" Assembly="RichTextEditor" %&gt;
+        </div>
+        <br />
+        <p>
+            b. Insert a RTE instance into the page and use Editor.Text property to load content into the RTE.
+        </p>
+        <div class="code">
+            &lt;RTE:Editor ID="Editor1" ContentCss="example.css" Text="Type here" runat="server" /&gt;
+        </div>
+    </article>
+
+    <div class="clear">
+    </div>
+    <footer>
+        <ul>
+            <li><a href="http://cutesoft.net/Support/">Support Ticket</a></li>
+            <li><a href="http://phphtmleditor.com/">Rich Text Editor for PHP</a></li>
+            <li><a href="http://asp.richtexteditor.com/">Rich Text Editor for ASP</a></li>
+            <li><a href="http://richtexteditor.com/pricing.aspx">Pricing</a></li>
+            <li><a href="http://richtexteditor.com/document/">Online Document</a></li>
+        </ul>
+    </footer>
+</body>
+</html>

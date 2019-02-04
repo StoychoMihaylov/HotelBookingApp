@@ -1,0 +1,30 @@
+body{font:12px arial,sans-serif;}
+a{color:#0000cc;font-size:xx-small;}
+img{border:0;}
+/*----Example CSS Class --*/ 
+img.greyborder {
+	border: 1px solid #c0c0c0;
+}
+td.module {
+	background-color: #efefef;
+}
+td.content {
+	color: black; 
+	font-family: tahoma, arial, helvetica; 
+	font-weight: bold; 
+}
+.subtabbg {
+	background-color: #efefef;
+}
+.redcolor{
+	color:red;
+}
+.boldgreen
+{
+	color: green; font-weight: bold;
+}
+.highlight
+{
+	background-color: yellow;
+}
+/*----End of Example CSS Class --*/ 

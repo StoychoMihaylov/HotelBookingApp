@@ -1,0 +1,47 @@
+﻿@using HotelBooking.Models.ViewModels.AdminPanel
+@using HotelBooking.Models.BindingModels.AdminPanel
+@model AvailableDaysListPageinViewModel
+@{
+    ViewBag.Title = "AvailableDaysList";
+}
+
+<div style="background-color:rgba(0, 0, 0, 0.8);color:white;margin-top:100px;display:inline-block;padding:30px;">
+    <div class="container" style="background-color:rgba(0, 0, 0, 0.8); color:white; text-align:left;">
+        <h2>Availability state</h2>
+
+        <table style="width:100%" class="table table-striped">
+            <tr>
+                <th>Date</th>
+                <th>Is available</th>
+                <th>Description</th>
+                <th>Reserved by Name</th>
+                <th>Phone</th>
+                <th>E-mail</th>
+                <th>Price</th>
+                <th>Change state</th>
+            </tr>
+            @foreach (var vm in Model.AvailableDaysViewModel)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(vms => vm.Date.Day) - @Html.DisplayFor(vms => vm.Date.Month) - @Html.DisplayFor(vms => vm.Date.Year)</td>
+                    <td>@Html.DisplayFor(vms => vm.IsAvailable)</td>
+                    <td style="max-width:300px;">@Html.DisplayTextFor(vms => vm.Description)</td>
+                    <td>@Html.DisplayFor(vms => vm.ReservedBy.FirstName) @Html.DisplayFor(vms => vm.ReservedBy.LastName)</td>
+                    <td>@Html.DisplayFor(vms => vm.ReservedBy.PhoneNumber)</td>
+                    <td>@Html.DisplayFor(vms => vm.ReservedBy.Email)</td>
+                    <td>@Html.DisplayFor(vms => vm.Price)</td>
+                    <td>@Html.ActionLink("Change the state", "DetailesAvailableDay", "Admin", new { id = vm.Id }, new { @class = "btn btn-primary btn-large" })</td>
+                </tr>
+            }
+        </table>
+        
+    </div>
+    <ul class="pagination">
+        <li class="@(Model.page == 1 ? "disabled" : string.Empty)"><a href="/Admin/AvailableDaysList/@Url.Content((Model.page - 1).ToString())"><span><<</span></a></li>
+        <li><span>@Model.page / @Model.pages</span>
+        <li>
+        <li class="@(Model.page == Model.pages ? "disabled" : string.Empty)"><a href="/Admin/AvailableDaysList/@Url.Content((Model.page + 1).ToString())"><span>>></span></a></li>
+    </ul>
+</div>
+
+

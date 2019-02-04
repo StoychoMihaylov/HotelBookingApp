@@ -1,0 +1,227 @@
+﻿@model HotelBooking.Models.BindingModels.BookingBindingModel
+@{
+    ViewBag.Title = "Rates & Availability";
+
+    //Data from DB to the datapicker js file
+    var unavailableDates = @ViewBag.Dates ?? string.Empty;
+    var datesWithPrice = @ViewBag.DaysWithPrice ?? string.Empty;
+
+    //Info messages
+    var successMessage = TempData["successMessage"] ?? string.Empty;
+    var infoMessage = TempData["infoMessage"] ?? string.Empty;
+    var errorMessage = TempData["errorMessage"] ?? string.Empty;
+}
+
+<div id="datapickerForm" style="max-width:100%;">
+    <div style="background-color:rgba(0, 0, 0, 0.8);color:white;margin-top:100px;display:inline-block;">
+        @*<div style="text-align:right;margin:5px;">
+            <span style="font-size:30px;"><b>$376</b></span>
+            <p>per night</p>
+        </div>*@
+        <h1>Rates & Availability</h1>
+        @using (Html.BeginForm("Booking", "Book", FormMethod.Post, new { id = "bookingForm" }))
+        {
+            <div style="margin:20px;">
+                <div>
+                    <div style="margin:20px;max-width:400px;display:inline-block">
+                        @Html.LabelFor(model => model.FromDate)
+                        @Html.TextBoxFor(model => model.FromDate, new { @class = "form-control datepicker", placeholder = "YYYY/MM/DD" })
+                    </div>
+                    <div style="margin:20px;max-width:400px;display:inline-block;">
+                        @Html.LabelFor(model => model.ToDate)
+                        @Html.TextBoxFor(model => model.ToDate, new { @class = "form-control datepicker", placeholder = "YYYY/MM/DD" })
+                    </div>
+                </div>
+                <div style="margin:2px;display:inline-block;">
+                    <div class="UnavailableMark" style="margin:10px;display:none;">
+                        <span class="UnavailableMark" style="background-color:grey; font-size:20px;color:grey;">day</span> Unavailable days
+                    </div>
+                    <div id="myDatepicker"  style="display:none"></div>
+                </div>
+                <div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <button class="btn btn-success" type="submit" id="submitBtn">Request to Book</button>
+                    }
+                    else
+                    {
+                        <div>
+                        <span>Please @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" }) or @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" }) before booking</span>
+                        </div>
+                        <br>
+                    }
+
+                    <button id="resetBtn" class="btn btn-danger">Reset</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div id="checkoutForm" style="display:none">
+    <div style="background-color:rgba(0, 0, 0, 0.8);color:white;margin-top:100px;display:inline-block; text-align:left;">
+        <div style="padding:40px;">
+            <h2>Rules & Policies</h2>
+            <div>
+                <span><b>Check-in:</b> 2:00 PM</span>
+            </div>
+            <div>
+                <span><b>Check-out:</b> 10:00 AM</span>
+            </div>
+            <div>
+                <div style="margin:40px;">
+                    <h3>Owner's Cancellation Policy</h3>
+                    <p>Owner's Cancellation Policy 100% refund if canceled at least 30 days before arrival date.</p>
+                </div>
+                <div style="margin:40px;">
+                    <h3>Damage Policy</h3>
+                    <p>You will be responsible for any damage to the rental property caused by you or your party during your stay.</p>
+                </div>
+                <div style="margin:40px;">
+                    <h3>House Rules</h3>
+                    <div>
+                        <div>
+                            <div>
+                                <span></span>
+                            </div>
+                            <div>
+                                <p>No parties/events/Contact owner to discuss</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <span></span>
+                            </div>
+                            <div>
+                                <p>No smoking</p>
+                                <p>May smoke only in the outdoor areas</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <span></span>
+                            </div>
+                            <div>
+                                <p>No pets</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <span></span>
+                            </div>
+                            <div>
+                                <p>Children allowed</p>
+                                <p>Adults must suppervise at all times the children</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p>Minimum age of primary renter:21</p>
+                                <p>Max occupancy:12 (12 adults)</p>
+                                <p>Minors age below 18 are not allowed in the pool area without an adult supervision at any time. Smoking allowed only in outdoor areas.</p>
+                                <p>For the complete set of house rules please contact the owner for the rental agreement.</p>
+                                <p><b>Fill up all required information, sign and email the agreement before making a payment, no booking will be accepted without signed agreement .</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin:40px;">
+                <p>DOWNLOADIN OF RENTAL AGREEMENT</p>
+                @Html.ActionLink("Download", "DownloadRentalAgreement", "Book", new { @class = "btn btn-success" })
+            </div>
+            <div style="margin:40px;">
+                <input type="checkbox" id="agreeCheckBox" autocomplete="off" name="agreeCheckBox" onclick="validate(this)"> @*CheckBoxFor()*@ I have read and agree to comply with all rental policies and terms.
+            </div>
+            <div>
+                <button class="btn btn-success" id="continueButton" type="button" onclick="submitForm()" disabled>Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/datepicker.js"></script>
+    <script>
+        //Calendar show and hide
+        $('.datepicker').attr('readonly', true);
+        $('.datepicker').click(function () {
+            $('.UnavailableMark').show('slow');
+            $('#myDatepicker').show('slow');
+            $('#myDatepicker').css('cursor', 'pointer');
+            $(this).attr("id", "datepicker")
+        });
+
+        //Reset botton
+        $("#resetBtn").click(function () {
+            $('#myDatepicker').hide('slow');
+            $(".datepicker").val("YYYY/MM/DD");
+        });
+    </script>
+
+    <script>
+        //Take the C# object to JSON
+        var unavailableDates = @Html.Raw(Json.Encode(@unavailableDates));
+        var datesWithPrice = @Html.Raw(Json.Encode(@datesWithPrice));
+    </script>
+
+    <script>
+        $("#continueButton").attr("disabled", true);
+
+        //Show rules policies
+        $("#submitBtn").click(function (e) {
+            e.preventDefault();
+            
+            $("#datapickerForm").hide("slow");
+            $("#checkoutForm").show("slow");     
+        });
+
+        //Continue if checkbox is checked
+        function validate(checkbox) {
+            if (checkbox.checked) {
+                $("#continueButton").attr("disabled", false);
+            }
+            else {
+                $("#continueButton").attr("disabled", true);
+            }
+            
+        };
+
+        function submitForm() {
+            $("form").submit();
+        };
+    </script>
+
+    <script type="text/javascript">
+            var successMessage = "@successMessage";
+            var infoMessage = "@infoMessage";
+            var errorMessage = "@errorMessage";
+  
+            if (successMessage != "") {
+                $("#successBox").text(successMessage);
+                $("#successBox").show();
+                setTimeout(function () {
+                    $("#successBox").fadeOut();
+                }, 5000);
+            }
+            if (infoMessage != "") {
+                $("#infoBox").text(infoMessage);
+                $("#infoBox").show();
+                setTimeout(function () {
+                    $("#infoBox").fadeOut();
+                }, 5000);
+            }
+            if (errorMessage != "") {
+                $("#errorBox").text(errorMessage);
+                $("#errorBox").show();
+                setTimeout(function () {
+                    $("#errorBox").fadeOut();
+                }, 5000);
+            }
+    </script>
+}
+
+
+    
+
+

@@ -1,0 +1,507 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    var successMessage = TempData["successMessage"] ?? string.Empty;
+    var infoMessage = TempData["infoMessage"] ?? string.Empty;
+    var errorMessage = TempData["errorMessage"] ?? string.Empty;
+}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+
+        <div class="item active">
+            <img src="~/Content/Images/7 Swimming pool 4.jpg" alt="Swimming pool" style="max-height:900px; width:100%;">
+            <div class="carousel-caption" style="background-color:rgba(0, 0, 0, 0.5); padding:20px;">
+                <div style="padding:30px;">
+                    <h2>Spring Valley</h2>
+                    <h3>THE YEARD IS TRULY AN OASIS WITH COVERED PATIO AND BBQ.</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="~/Content/Images/9 Outdoor 4.1.jpg" alt="Outdoor" style="max-height:900px; width:100%;">
+            <div class="carousel-caption" style="background-color: rgba(0, 0, 0, 0.5); padding:20px;">
+                <div style="padding:30px;">
+                    <h2>Las Vegas Strip</h2>
+                    <h3>DRIVE ONLY 10-15 MIN FROM THE STRIP AND 20-25 MIN FROM THE AIRPORT.</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="~/Content/Images/11 Living.1.jpg" alt="Living room" style="max-height:900px; width:100%;">
+            <div class="carousel-caption" style="background-color: rgba(0, 0, 0, 0.5); padding:20px;">
+                <div style="padding:30px;">
+                    <h2>Las Vegas, Nevada, USA</h2>
+                    <h3>ONE OF A KIND PRIVATE OASIS POOL RESORT AREA, 5 MILES FROM THE STRIP.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<div style="background-color:rgba(0, 0, 0, 0.8); color:white;height:40px;max-width:100%;">   
+    <div style="display:inline-block;">
+        <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size:30px;"></span>
+        <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size:30px;"></span>
+        <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size:30px;"></span>
+        <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size:30px;"></span>
+        <span class="glyphicon glyphicon-star" aria-hidden="true" style="font-size:30px;"></span>
+    </div>
+</div>
+<br>
+
+<div class="container" style="background-color:rgba(0, 0, 0, 0.8); color:white; text-align:left;">
+    @*<div style="text-align:right;margin:5px;">
+        <span style="font-size:30px;"><b>$376</b></span>
+        <p>per night</p>
+    </div>*@
+
+        <div style="background-color:rgba(0, 0, 0, 0.8); color:white; max-width: 620px; display: table; margin-right: auto; margin-left: auto; padding:20px;">
+            <div style="display:inline-block; max-width:100px; margin:5px;">
+                <div>
+                    <span class="glyphicon glyphicon-home" aria-hidden="true" style="font-size:30px;"></span>
+                </div>
+                <div class="amenity-title">
+                    House
+                </div>
+                <div>
+                    3000sq.ft.
+                </div>
+            </div>
+            <div style="display:inline-block; width:100px; margin:5px; margin-left:50px;">
+                <div>
+                    <span class="glyphicon glyphicon-user" aria-hidden="true" style="font-size:30px;"></span>
+                </div>
+                <div>
+                    Sleeps
+                </div>
+                <div>
+                    12
+                </div>
+            </div>
+            <div style="display:inline-block; width:100px; margin:5px;">
+                <div>
+                    <span class="glyphicon glyphicon-bed" aria-hidden="true" style="font-size:35px;"></span>
+                </div>
+                <div>
+                    Bedrooms
+                </div>
+                <div>
+                    4
+                </div>
+            </div>
+            <div style="display:inline-block; width:100px; margin:5px;">
+                <div>
+                    <span><img src="~/Content/Images/bathroom-icon.png" style="height:40%; width:40%;" /></span>
+                </div>
+                <div>
+                    Bathrooms
+                </div>
+                <div>
+                    3
+                </div>
+            </div>
+            <div style="display:inline-block; max-width:100px; margin:5px;">
+                <div>
+                    <span><img src="~/Content/Images/Nights-icon.png" style="height:40%; width:40%;" /></span>
+                </div>
+                <div>
+                    Minimum Stay
+                </div>
+                <div>
+                    2 nights
+                </div>
+            </div>
+        </div>
+
+    <div style="padding:20px;">
+        <h1>Amenities</h1>
+        <h4>Accommodation and Amenities for this vacation house rental in <strong>Las Vegas</strong></h4>
+    </div>
+    <table class="table table-striped table-dark" style="padding:50px;">
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td><b>Property Type:</b></td>
+                <td>
+                    <div>
+                        <div style="max-width: 300px;margin:10px">
+                            House
+                        </div>
+                        <div style="max-width: 300px;margin:10px">
+                            <p>Floor Area: 3000 sq. ft.(278 m²)</p>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td><b>Bathrooms:</b></td>
+                <td>
+                    <div>
+                        <div>
+                            <p><b>3 Bathrooms</b></p>
+                        </div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>Bathroom 1 - toilet , tub , shower , jetted tub</p>
+                            <p>Bathroom 2 - toilet , tub , shower</p>
+                            <p>Bathroom 3 - toilet , tub , shower</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td><b>Bedrooms:</b></td>
+                <td>
+                    <div>
+                        <div>
+                            <p><b>4 Bedrooms, Sleeps 12</b></p>
+                        </div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>Bedroom 1 - 1 king</p>
+                            <p>Bedroom 2 - 1 queen</p>
+                            <p>Bedroom 3 - 1 queen</p>
+                        </div>
+                        <div style="max-width: 400px;display:inline-block;margin:10px;">
+                            <p>Bedroom 4 - 1 queen</p>
+                            <p>Loft area - 2 sleep sofa /futon</p>
+                            <p>Sleeper sofa and reclinig futon in loft area on 2nd floor</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td><b>Pool / Spa:</b></td>
+                <td>
+                    <div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p><b>Private Pool</b></p>
+                            <p>Solar panel to heat up the pool. In the winter, daily use depends on how cold are the nights, the pool takes many hours to warm up, on cold and cloudy winter days the pool may not be usable. Additional heating is $50 per day</p>
+                        </div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p><b>Hot Tub</b></p>
+                            <p>The hot tub - grotto has a gas heater and can be used all year around as it heats up after 2-3 hours.</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td><b>House Rules:</b></td>
+                <td>
+                    <div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>Check-in: 2:00 PM / Check-out: 10:00 AM</p>
+                            <p>Max. occupancy: 12</p>
+                            <p>Max. adults: 12</p>
+                            <p>Min. age of primary renter: 21</p>
+                        </div>
+                        <div style="max-width:400px;display:inline-block;margin:10px;">
+                            <p>Children welcome (Children must be suppervise at all times)</p>
+                            <p>Parties/events not allowed (Contact owner to discuss)</p>
+                            <p>Pets not allowed</p>
+                            <p>No smoking (May smoke only in the outdoor areas)</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div>
+                        <p>
+                            Minors age below 18 are not allowed in the pool area without an adult supervision at any time. Smoking allowed only in outdoor areas
+                            For the complete set of house rules please contact the owner for the rental agreement.
+                            Fill up all required information, sign and email the agreement before making a payment, No booking will be accepted without signed agreement .
+                        </p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">6</th>
+                <td><b>Theme:</b></td>
+                <td>
+                    <div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>Budget</p>
+                            <p>Family</p>
+                            <p>Romantic</p>
+                        </div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>Sports & Activities</p>
+                            <p>Tourist Attractions</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">7</th>
+                <td><b>General:</b></td>
+                <td>
+                    <div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>Air Conditioning</p>
+                            <p>Clothes Dryer</p>
+                            <p>Fireplace ...</p>
+                            <p>Hair Dryer</p>
+                            <p>Heating</p>
+                            <p>Internet</p>
+                        </div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <P>Iron & Board</P>
+                            <p>Linens Provided</p>
+                            <p>Living Room</p>
+                            <p>Parking</p>
+                            <p>Towels Provided</p>
+                            <p>Washing Machine</p>
+                        </div>
+                        <div style="max-width:600px;margin:5px;">
+                            <p>Meals: Guests provide their own meals</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">8</th>
+                <td><b>Kitchen:</b></td>
+                <td>
+                    <div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>Coffee Maker</p>
+                            <p>Dishes & Utensils</p>
+                            <p>Dishwasher</p>
+                            <p>Kitchen</p>
+                            <p>Microwave</p>
+                        </div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>Oven</p>
+                            <P>Pantry Items</P>
+                            <p>Refrigerator</p>
+                            <p>Stove</p>
+                            <p>Toaster</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">9</th>
+                <td><b>Dining:</b></td>
+                <td>
+                    <p>Dining</p>
+                    <p>Dining Area</p>
+                    <p>seating for 12 people</p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">10</th>
+                <td><b>Entertainment:</b></td>
+                <td>
+                    <div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>Stereo</p>
+                            <p>Television</p>
+                        </div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>Video Library ...</p>
+                            <small>Netflix</small>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">11</th>
+                <td><b>Outside:</b></td>
+                <td>
+                    <p>Balcony</p>
+                    <p>Deck / Patio</p>
+                    <p>Outdoor Grill</p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">12</th>
+                <td><b>Suitability:</b></td>
+                <td>
+                    <p>long term renters welcome </p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">13</th>
+                <td><b>Attractions:</b></td>
+                <td>
+                    <div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>cinemas</p>
+                            <p>playground</p>
+                            <p>recreation center</p>
+                        </div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>restaurants</p>
+                            <p>theme parks</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">14</th>
+                <td><b>Leisure Activities:</b></td>
+                <td>
+                    <p>gambling casinos</p>
+                    <p>horseback riding</p>
+                    <p>scenic drives </p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">15</th>
+                <td><b>Local Services & Businesses:</b></td>
+                <td>
+                    <div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>ATM/bank</p>
+                            <p>fitness center</p>
+                            <p>groceries</p>
+                        </div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>hospital</p>
+                            <p>medical services</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">16</th>
+                <td><b>Sports & Adventure Activities:</b></td>
+                <td>
+                    <div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>cycling</p>
+                            <p>equestrian events</p>
+                            <p>golf</p>
+                            <p>hiking</p>
+                        </div>
+                        <div style="max-width: 300px;display:inline-block;margin:10px;">
+                            <p>mountain biking</p>
+                            <p>mountain climbing</p>
+                            <p>roller blading</p>
+                            <p>tennis</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
+<div class="container" style="background-color:rgba(0, 0, 0, 0.8); color:white;padding:50px;">
+    <h1>Location area</h1>
+    <div id="map" style="max-width:1200px;height:400px;background:grey;"></div>
+    <div style="text-align:left; padding:20px; background-color: rgba(0, 0, 0, 0.5);max-width:650px;">
+        <div style="max-width: 300px;display:inline-block;">
+            <strong>Nearest Airport</strong>
+            <p>
+                13 Miles
+                McCarran International Airport Las Vegas
+            </p>
+        </div>
+        <div style="max-width: 300px;display:inline-block;padding:50px;">
+            <strong>Nearest Motorway</strong>
+            <p>
+                5 Miles
+                Las Vegas Strip
+            </p>
+        </div>   
+    </div>
+    <div style="text-align:left;background-color: rgba(0, 0, 0, 0.5);margin-top:10px;padding:20px;">
+        <p><b>Car recommended</b><p>
+        <p>Neighborhood: Spring Valley</p>
+        <br>
+        <p>The area mostly consists of housing subdivisions, with strip malls lining the large boulevards that connect suburban Las Vegas to the Strip.</p>
+        <br>
+        <p>The Spring Valley Community and Desert Breeze parks are within walking distance of the property..</p>
+        <br>
+        <p>Spring Valley is the home of tennis players Andre Agassi and Steffi Graf, as well as former Sacramento Kings owners George and Gavin Maloof. The Sultan of Brunei used to keep a residence there, and Carrot Top has his Las Vegas residence in the area. Blogger and reality TV personality J.Son Dinant resides in Spring Valley. NASCAR drivers Kurt and Kyle Busch attended Durango High School in Spring Valley, as did actress Cerina Vincent and BMX celebrity T. J. Lavin.</p>     
+    </div>
+    <p style="text-align:center;"><strong>USA</strong>, <strong>Nevada</strong>, <strong>Las Vegas</strong></p>
+    @Html.ActionLink("Rates & Availability", "Booking", "Book")
+</div>
+
+
+@section Scripts
+{
+    <script>
+        function initMap() {
+                var mapOptions = {
+                    center: new google.maps.LatLng(36.120936, -115.268927),
+                    zoom: 13,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+                // Create marker 
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: new google.maps.LatLng(36.120936, -115.268927),
+                    title: 'OASIS POOL RESORT'
+                });
+
+                // Add circle overlay and bind to marker
+                var circle = new google.maps.Circle({
+                    map: map,
+                    radius: 1000,    // 10 miles in metres
+                    fillColor: '#AA0000'
+                });
+                circle.bindTo('center', marker, 'position');
+            }
+    </script>
+
+    <script type="text/javascript">
+
+                var successMessage = "@successMessage";
+                var infoMessage = "@infoMessage";
+                var errorMessage = "@errorMessage";
+
+                if (successMessage != "") {
+                    $("#successBox").text(successMessage);
+                    $("#successBox").show();
+                    setTimeout(function () {
+                        $("#successBox").fadeOut();
+                    }, 5000);
+                }
+                if (infoMessage != "") {
+                    $("#infoBox").text(infoMessage);
+                    $("#infoBox").show();
+                    setTimeout(function () {
+                        $("#infoBox").fadeOut();
+                    }, 5000);
+                }
+                if (errorMessage != "") {
+                    $("#errorBox").text(errorMessage);
+                    $("#errorBox").show();
+                    setTimeout(function () {
+                        $("#errorBox").fadeOut();
+                    }, 5000);
+                }
+
+    </script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwlgT5yKlQi0GRm01t-Uw44npFZB5VNoY&callback=initMap">
+    </script>
+}

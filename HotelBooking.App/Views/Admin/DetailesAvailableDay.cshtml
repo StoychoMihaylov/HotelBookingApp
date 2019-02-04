@@ -1,0 +1,61 @@
+﻿@using HotelBooking.Models.BindingModels.Admin
+@model DetailesAvailableDaysBindingModel
+@{
+    ViewBag.Title = "DetailesAvailableDay";
+}
+
+<div style="background-color:rgba(0, 0, 0, 0.8);color:white;margin-top:100px;display:inline-block;padding:30px;">
+    
+        @using (Html.BeginForm("DetailesAvailableDay", "Admin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(vm => vm.Date)
+                @Html.DisplayFor(vm => vm.Date.Day) - @Html.DisplayFor(vm => vm.Date.Month) - @Html.DisplayFor(vm => vm.Date.Year)
+            </div>
+            if (Model.IsAvailable != true)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(vm => vm.ReservedBy.FirstName)
+                    @Html.DisplayFor(vm => vm.ReservedBy.FirstName)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(vm => vm.ReservedBy.LastName)
+                    @Html.DisplayFor(vm => vm.ReservedBy.LastName)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(vm => vm.ReservedBy.Email)
+                    @Html.DisplayFor(vm => vm.ReservedBy.Email)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(vm => vm.ReservedBy.PhoneNumber)
+                    @Html.DisplayFor(vm => vm.ReservedBy.PhoneNumber)
+                </div>
+            }
+
+            <div class="form-group">
+                @Html.LabelFor(vm => vm.IsAvailable)
+                @Html.EditorFor(vm => vm.IsAvailable)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(vm => vm.Price)
+                <div style="color:black;">
+                @Html.EditorFor(vm => vm.Price)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(vm => vm.Description)
+                <div style="color:black;">
+                @Html.TextAreaFor(vm => vm.Description)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <input type="submit" value="Submit" class="btn btn-success" />
+                    <a class="btn btn-danger" href="/Admin/AvailableDaysList/1">Back</a>
+                    @*@Html.ActionLink("Back", "AvailableDaysList", "Admin", new { ReturnUrl = ViewBag.ReturnUrl, @class = "btn btn-danger" })*@
+                </div>
+            </div>
+        }
+</div>

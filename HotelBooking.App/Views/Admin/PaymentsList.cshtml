@@ -1,0 +1,46 @@
+﻿@using HotelBooking.Models.ViewModels.AdminPanel
+@model PaymentListPageViewModel
+@{
+    ViewBag.Title = "Payments";
+}
+
+
+<div style="background-color:rgba(0, 0, 0, 0.8);color:white;margin-top:100px;display:inline-block;padding:30px;">
+    <div class="container" style="background-color:rgba(0, 0, 0, 0.8); color:white; text-align:left;">
+        <h2>Payments</h2>
+
+        <table style="width:100%" class="table table-striped">
+            <tr>
+                <th>Payer</th>
+                <th>Date</th>
+                <th>Stay</th>
+                <th>Booked nights</th>
+                <th>Amound all nights</th>
+                <th>Cleaning fee</th>
+                <th>Refundable damage Deposit</th>
+                <th>Total price</th>
+            </tr>
+            @foreach (var payment in Model.Payments)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(vm => payment.Payer.FirstName) @Html.DisplayFor(vm => payment.Payer.LastName)<br>@Html.DisplayFor(vm => payment.Payer.Email)<br>@Html.DisplayFor(vm => payment.Payer.PhoneNumber)</td>
+                    <td>@Html.DisplayFor(vm => payment.Date.Day)-@Html.DisplayFor(vm => payment.Date.Month)-@Html.DisplayFor(vm => payment.Date.Year)</td>
+                    <td>@Html.DisplayTextFor(vm => payment.FromDate.Day)-@Html.DisplayTextFor(vm => payment.FromDate.Month)-@Html.DisplayTextFor(vm => payment.FromDate.Year)
+                    <br>@Html.DisplayTextFor(vm => payment.ToDate.Day)-@Html.DisplayTextFor(vm => payment.ToDate.Month)-@Html.DisplayTextFor(vm => payment.ToDate.Year)</td>
+                    <td>@Html.DisplayFor(vm => payment.BookedDays)</td>
+                    <td>@Html.DisplayFor(vm => payment.AmoundPerAllNights)</td>
+                    <td>@Html.DisplayFor(vm => payment.CleaningFee)</td>
+                    <td>@Html.DisplayFor(vm => payment.RefundableDamageDeposit)</td>
+                    <td>@Html.DisplayFor(vm => payment.TotalPrice)</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <ul class="pagination">
+        <li class="@(Model.page == 1 ? "disabled" : string.Empty)"><a href="/Admin/PaymentsList/@Url.Content((Model.page - 1).ToString())"><span><<</span></a></li>
+        <li><span>@Model.page / @Model.pages</span>
+        <li>
+        <li class="@(Model.page == Model.pages ? "disabled" : string.Empty)"><a href="/Admin/PaymentsList/@Url.Content((Model.page + 1).ToString())"><span>>></span></a></li>
+    </ul>
+</div>
+

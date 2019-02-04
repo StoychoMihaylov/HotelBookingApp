@@ -1,0 +1,94 @@
+﻿@using HotelBooking.Models.ViewModels.Review
+@model ReviewVmAndReviewBmViewModel
+@{
+    ViewBag.Title = "Reviews";
+}
+
+<div class="container" style="background-color:rgba(0, 0, 0, 0.8); color:white;margin-top:100px;">
+    <div style="margin:20px;">
+    <h2>Reviews</h2>
+        @foreach (var review in Model.ReviewViewModel)
+        {
+            <div style=" color:white;margin:40px;border-radius:5px;background-color:rgba(0, 0, 0, 0.4);">
+                <hr>
+                <h2 style="border-top-left-radius:5px;border-top-right-radius:5px;color:white;padding:5px;">@Html.DisplayFor(r => review.Title)</h2>
+                    <div style="margin:20px;text-align:left;max-width:1000px;">
+                        @Html.DisplayTextFor(r => review.Content)
+                    </div>
+                    <div style="padding:5px;margin:2px; color:white;border-bottom-left-radius:5px;border-bottom-right-radius:5px;">
+                        <p>From: <i><b>@Html.DisplayFor(r => review.Author.FirstName)&nbsp;@Html.DisplayFor(r => review.Author.LastName)</b></i>&nbsp;|&nbsp;On: @Html.DisplayFor(r => review.SubmittedOn)<p>
+                    </div>
+
+                    <h4 style="color:aqua;">Replies</h4>
+
+                    <div id="replies" style="color:aqua;" >                                      
+                        @foreach (var comment in review.Comments)
+                        {
+                            <hr>
+                            <div>
+                                <h4><i>@Html.DisplayFor(c => comment.Author.FirstName, new { style = "font:italic;"}) @Html.DisplayFor(c => comment.Author.LastName, new { style = "font:italic;" })</i></h4>
+                                <p style="max-width:700px;">@Html.DisplayTextFor(c => comment.Content)</p>
+                                <p><i>@Html.DisplayFor(c => comment.SubmittedOn)</i></p>
+                            </div>
+                            <hr>
+                        }
+                    </div>
+                    <div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("AddComment", "Review", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                            {
+                                <div>
+                                    
+                                    <input type="hidden" name="reviewId" value="@Html.DisplayFor(r => review.Id)" />
+                                    <div style="text-align:right;margin-left:50%;">
+                                        Write a reply
+                                        @Html.TextAreaFor(m => m.CommentBindingModel.Content, new { @class = "form-control replyTextArea", TextMode = "MultiLine", rows = "1", style = "max-width:600px;font-size:10px;resize:none;margin-bottom:20px;", placeholder = "Add your reply of this review" })
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                <hr>
+             </div>
+        }
+    </div>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div style="margin:20px;margin-top:100px;">
+            <h2>Add review</h2>
+            <div style="text-align:left;margin:20px;">
+                @using (Html.BeginForm("List", "Review", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                {
+                    <div>
+                        <div>
+                            @Html.TextBoxFor(m => m.ReviewBidnginModel.Title, new { @class = "form-control", placeholder = "Title of the review" })
+                        </div>
+                        <br>
+                        @Html.TextAreaFor(m => m.ReviewBidnginModel.Content, new { @class = "form-control", TextMode = "MultiLine", rows = "7", style = "max-width: 700px; resize:none;", placeholder = "Write your review..." })
+                        <FTB:FreeTextBox id="FreeTextBox1" runat="server" /> 
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <div>
+                            <input type="submit" class="btn btn-success" value="Submit" style="margin-left:15px;" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    } 
+</div>
+
+@section scripts {
+    <script>
+        $('.replyTextArea').keydown(function (event) {
+            if (event.keyCode == 13) {
+                $(this.form).submit()
+                return false;
+            }
+        })
+    </script>
+}
+

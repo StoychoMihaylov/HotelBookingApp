@@ -1,0 +1,52 @@
+﻿@model HotelBooking.Models.ViewModels.Booking.BookingConfirmationViewModel
+@{
+    ViewBag.Title = "Confirmation";
+}
+
+
+<div style="background-color:rgba(0, 0, 0, 0.8);color:white;margin-top:100px;display:inline-block;padding:30px;">
+    <h2>Confirmation of booking</h2>
+    <div style="margin:20px;">
+        <div style="margin:10px;">
+            @Html.LabelFor(m => m.FromDate)
+            @Html.DisplayFor(m => m.FromDate.Date.Day)-@Html.DisplayFor(m => m.FromDate.Date.Month)-@Html.DisplayFor(m => m.FromDate.Date.Year)
+            @Html.LabelFor(m => m.ToDate)
+            @Html.DisplayFor(m => m.ToDate.Date.Day)-@Html.DisplayFor(m => m.ToDate.Date.Month)-@Html.DisplayFor(m => m.ToDate.Date.Year)
+        </div>
+        <div style="margin:10px;">
+            @Html.LabelFor(m => m.BookedDays)
+            @Html.DisplayFor(m => m.BookedDays)
+        </div>
+        <div style="margin:10px;">
+            @Html.LabelFor(m => m.AmoundPerAllNights)
+            @Html.DisplayFor(m => m.AmoundPerAllNights) US$
+        </div>
+        <div style="margin:10px;">
+            @Html.LabelFor(m => m.CleaningFee)
+            @Html.DisplayFor(m => m.CleaningFee) US$
+        </div>
+        <div style="margin:10px;">
+            @Html.LabelFor(m => m.RefundableDamageDeposit)
+            @Html.DisplayFor(m => m.RefundableDamageDeposit) US$
+        </div>
+        <div style="margin:10px;">
+            @Html.LabelFor(m => m.TotalPrice)
+            @Html.DisplayFor(m => m.TotalPrice) US$
+        </div>
+    </div>
+    <div>
+        <div>
+            <div style="width: 100px;display:inline-block;">
+                @using (Html.BeginForm("BookingConfirmation", "Book", FormMethod.Post))
+                {
+                    <button class="btn btn-success" style="width:100px;" type="submit">Booking</button>
+                }      
+            </div>
+            <div style="width: 100px;display:inline-block;">
+                <a href="/Book/Booking"><button class="btn btn-danger">Change Dates</button></a>
+            </div>
+        </div>     
+    </div>
+</div>
+
+

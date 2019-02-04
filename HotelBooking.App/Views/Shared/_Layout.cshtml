@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -OASIS POOL RESORT-</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <section>
+        <div id="successBox" class="notification"><p>Successfull</p></div>
+
+        <div id="infoBox" class="notification"><p>Info</p></div>
+
+        <div id="errorBox" class="notification"><p>Error</p></div>
+    </section>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Overview", "Index", "Home")</li>
+                    <li><a href="/Home/Gallery/1">Gallery</a></li>
+                    <li>@Html.ActionLink("Reviews", "List", "Review")</li>
+                    <li>@Html.ActionLink("Rates & Availability", "Booking", "Book")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>
+                            <div class="dropdown">
+                                <button class="dropbtn">Admin Panel</button>
+                                <div class="dropdown-content">
+                                    <a href="/Admin/AvailableDaysList/1">Dates state</a>
+                                    @*@Html.ActionLink("Dates state", "AvailableDaysList", "Admin", new { area = "" }, new { id = "1" })*@
+                                    @Html.ActionLink("Accounts", "AccountsList", "Admin", new { area = "" }, new { id = "1" })
+                                    @Html.ActionLink("Payments", "PaymentsList", "Admin", new { area = "" }, new { id = "1" })
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+        @RenderBody()
+        <footer>
+            <p>&copy; @DateTime.Now.Year - OASIS POOL RESORT - </p>
+
+        </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
