@@ -53,8 +53,7 @@
             <div class="form-group">
                 <div>
                     <input type="submit" value="Submit" class="btn btn-success" />
-                    <a class="btn btn-danger" href="/Admin/AvailableDaysList/1">Back</a>
-                    @*@Html.ActionLink("Back", "AvailableDaysList", "Admin", new { ReturnUrl = ViewBag.ReturnUrl, @class = "btn btn-danger" })*@
+                    @Html.ActionLink("Back", "AvailableDaysList", "Admin", new { ReturnUrl = ViewBag.ReturnUrl, @class = "btn btn-danger" })
                 </div>
             </div>
         }

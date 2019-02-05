@@ -41,8 +41,7 @@
                             <div class="dropdown">
                                 <button class="dropbtn">Admin Panel</button>
                                 <div class="dropdown-content">
-                                    <a href="/Admin/AvailableDaysList/1">Dates state</a>
-                                    @*@Html.ActionLink("Dates state", "AvailableDaysList", "Admin", new { area = "" }, new { id = "1" })*@
+                                    @Html.ActionLink("Dates state", "AvailableDaysList", "Admin", new { area = "" })
                                     @Html.ActionLink("Accounts", "AccountsList", "Admin", new { area = "" }, new { id = "1" })
                                     @Html.ActionLink("Payments", "PaymentsList", "Admin", new { area = "" }, new { id = "1" })
                                 </div>
