@@ -43,7 +43,7 @@
             var dayStep = 0;
             var executed = false;
 
-            // Adding List of view models
+            // Adding List of view models for every page
             for (int i = 1; i <= pages; i++)
             {
                 for (int j = dayStep; j < allDays.Count() - 1; j++)
@@ -55,11 +55,11 @@
                         {
                             //Set default page with the current month
                             idPage = i;
+                            executed = true;
                         }
-
-                        executed = true;
                     }                   
 
+                    // adding all view models into apropirate pages
                     if (allDays[j].Date.Month == allDays[j + 1].Date.Month)
                     {
                         if (currentStep == i)
